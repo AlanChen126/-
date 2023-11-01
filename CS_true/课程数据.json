@@ -1,0 +1,263 @@
+﻿{
+  "courses": [
+    {
+      "name": "体育1",
+      "class_num": 0,
+      "pre_class": [],
+      "score": 1,
+      "hours": 32
+    },
+    {
+      "name": "体育2",
+      "class_num": 1,
+      "pre_class": [
+        0
+      ],
+      "score": 1,
+      "hours": 32
+    },
+    {
+      "name": "体育3",
+      "class_num": 2,
+      "pre_class": [
+        0,
+        1
+      ],
+      "score": 1,
+      "hours": 32
+    },
+    {
+      "name": "体育4",
+      "class_num": 3,
+      "pre_class": [
+        0,
+        1,
+        2
+      ],
+      "score": 1,
+      "hours": 32
+    },
+    {
+      "name": "中国近现代史纲要",
+      "class_num": 4,
+      "pre_class": [],
+      "score": 3,
+      "hours": 48
+    },
+    {
+      "name": "思想道德与法治",
+      "class_num": 5,
+      "pre_class": [
+        4
+      ],
+      "score": 3,
+      "hours": 48
+    },
+    {
+      "name": "习思",
+      "class_num": 6,
+      "pre_class": [
+        4,
+        5
+      ],
+      "score": 2,
+      "hours": 32
+    },
+    {
+      "name": "毛概",
+      "class_num": 7,
+      "pre_class": [
+        4,
+        5,
+        6
+      ],
+      "score": 3,
+      "hours": 48
+    },
+    {
+      "name": "马克思原理",
+      "class_num": 8,
+      "pre_class": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "score": 3,
+      "hours": 48
+    },
+    {
+      "name": "大学英语(综合)",
+      "class_num": 9,
+      "pre_class": [],
+      "score": 4,
+      "hours": 64
+    },
+    {
+      "name": "大学英语(高级)",
+      "class_num": 10,
+      "pre_class": [
+        9
+      ],
+      "score": 4,
+      "hours": 64
+    },
+    {
+      "name": "高等数学(工)-1",
+      "class_num": 11,
+      "pre_class": [],
+      "score": 5,
+      "hours": 99
+    },
+    {
+      "name": "高等数学(工)-2",
+      "class_num": 12,
+      "pre_class": [
+        11
+      ],
+      "score": 5,
+      "hours": 99
+    },
+    {
+      "name": "大学物理-1",
+      "class_num": 13,
+      "pre_class": [
+        11
+      ],
+      "score": 3,
+      "hours": 63
+    },
+    {
+      "name": "大学物理-2",
+      "class_num": 14,
+      "pre_class": [
+        13
+      ],
+      "score": 3,
+      "hours": 63
+    },
+    {
+      "name": "电路分析基础-1",
+      "class_num": 15,
+      "pre_class": [
+        12,
+        14
+      ],
+      "score": 2,
+      "hours": 32
+    },
+    {
+      "name": "模拟电子技术",
+      "class_num": 16,
+      "pre_class": [
+        15
+      ],
+      "score": 2,
+      "hours": 32
+    },
+    {
+      "name": "数字逻辑",
+      "class_num": 17,
+      "pre_class": [
+        15
+      ],
+      "score": 3,
+      "hours": 48
+    },
+    {
+      "name": "计算机组成原理",
+      "class_num": 18,
+      "pre_class": [
+        16,
+        17
+      ],
+      "score": 3,
+      "hours": 48
+    },
+    {
+      "name": "计算机网络",
+      "class_num": 19,
+      "pre_class": [
+        18
+      ],
+      "score": 2,
+      "hours": 40
+    },
+    {
+      "name": "操作系统原理",
+      "class_num": 20,
+      "pre_class": [
+        18
+      ],
+      "score": 3,
+      "hours": 48
+    },
+    {
+      "name": "数据库原理",
+      "class_num": 21,
+      "pre_class": [
+        18
+      ],
+      "score": 3,
+      "hours": 48
+    },
+    {
+      "name": "编译原理",
+      "class_num": 22,
+      "pre_class": [
+        20
+      ],
+      "score": 3,
+      "hours": 56
+    },
+    {
+      "name": "线性代数(工)",
+      "class_num": 23,
+      "pre_class": [],
+      "score": 3,
+      "hours": 54
+    },
+    {
+      "name": "集合与图论",
+      "class_num": 24,
+      "pre_class": [
+        12,
+        23
+      ],
+      "score": 2,
+      "hours": 45
+    },
+    {
+      "name": "代数与逻辑",
+      "class_num": 25,
+      "pre_class": [
+        24
+      ],
+      "score": 2,
+      "hours": 36
+    },
+    {
+      "name": "数据结构与算法",
+      "class_num": 26,
+      "pre_class": [
+        23
+      ],
+      "score": 3,
+      "hours": 56
+    },
+    {
+      "name": "概率论与数理统计",
+      "class_num": 27,
+      "pre_class": [],
+      "score": 3,
+      "hours": 54
+    },
+    {
+      "name": "高级语言程序设计",
+      "class_num": 28,
+      "pre_class": [],
+      "score": 3,
+      "hours": 56
+    }
+  ]
+}
