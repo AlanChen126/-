@@ -23,9 +23,10 @@ class_system::class_system(QWidget *parent)
     //点击按钮显示界面
     connect(ui.set, SIGNAL(clicked()), this, SLOT(set_data_Button_clicked()));//点击set按钮设置学时
     connect(ui.change_term, SIGNAL(clicked()), this, SLOT(change_term_Button_clicked()));//点击change按钮切换课程所在学期
-    connect(ui.show_dag, SIGNAL(clicked()), this, SLOT(show_dag_Button_clicked()));//点击change按钮切换课程所在学期
+    connect(ui.show_dag, SIGNAL(clicked()), this, SLOT(show_dag_Button_clicked()));//点击显示有向图按钮显示当前的有向图
     connect(ui.choose, SIGNAL(clicked()), this, SLOT(show_class_Button_clicked()));//点击显示课表按钮显示当前排课结果
-
+    connect(ui.save, SIGNAL(clicked()), this, SLOT(save_Button_clicked()));//点击保存按钮保存当前课表信息
+    connect(ui.fallback, SIGNAL(clicked()), this, SLOT(fallback_Button_clicked()));//点击回退按钮把排课记录返回到上一次修改
 }
 
 class_system::~class_system()
@@ -62,6 +63,22 @@ void class_system::show_dag_Button_clicked()
     show_dag* show_dag_window = new show_dag(this);
     show_dag_window->setWindowFlags(Qt::Window);//要先设置成窗口属性
     show_dag_window->show();
+}
+
+//点击保存按钮保存当前课表信息
+void class_system::save_Button_clicked()
+{
+    QString result;
+    result = dag.saveCurrentAssignment();
+    ui.debug->append(result);
+}
+
+//点击回退按钮把排课记录返回到上一次修改
+void class_system::fallback_Button_clicked()
+{
+    QString result;
+    result = dag.undo();
+    ui.debug->append(result);
 }
 
 //处理从设置学分界面得到的学分和学时的数据

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_class_system_t {
-    QByteArrayData data[12];
-    char stringdata0[182];
+    QByteArrayData data[14];
+    char stringdata0[226];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,14 +43,17 @@ QT_MOC_LITERAL(7, 112, 6), // "xuefen"
 QT_MOC_LITERAL(8, 119, 25), // "show_class_Button_clicked"
 QT_MOC_LITERAL(9, 145, 17), // "handlechangeReady"
 QT_MOC_LITERAL(10, 163, 9), // "class_num"
-QT_MOC_LITERAL(11, 173, 8) // "term_num"
+QT_MOC_LITERAL(11, 173, 8), // "term_num"
+QT_MOC_LITERAL(12, 182, 19), // "save_Button_clicked"
+QT_MOC_LITERAL(13, 202, 23) // "fallback_Button_clicked"
 
     },
     "class_system\0set_data_Button_clicked\0"
     "\0change_term_Button_clicked\0"
     "show_dag_Button_clicked\0handleDataReady\0"
     "xueshi\0xuefen\0show_class_Button_clicked\0"
-    "handlechangeReady\0class_num\0term_num"
+    "handlechangeReady\0class_num\0term_num\0"
+    "save_Button_clicked\0fallback_Button_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,7 +63,7 @@ static const uint qt_meta_data_class_system[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,12 +71,14 @@ static const uint qt_meta_data_class_system[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x08 /* Private */,
-       3,    0,   45,    2, 0x08 /* Private */,
-       4,    0,   46,    2, 0x08 /* Private */,
-       5,    2,   47,    2, 0x08 /* Private */,
-       8,    0,   52,    2, 0x08 /* Private */,
-       9,    2,   53,    2, 0x08 /* Private */,
+       1,    0,   54,    2, 0x08 /* Private */,
+       3,    0,   55,    2, 0x08 /* Private */,
+       4,    0,   56,    2, 0x08 /* Private */,
+       5,    2,   57,    2, 0x08 /* Private */,
+       8,    0,   62,    2, 0x08 /* Private */,
+       9,    2,   63,    2, 0x08 /* Private */,
+      12,    0,   68,    2, 0x08 /* Private */,
+      13,    0,   69,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -82,6 +87,8 @@ static const uint qt_meta_data_class_system[] = {
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    6,    7,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   10,   11,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -98,6 +105,8 @@ void class_system::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 3: _t->handleDataReady((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 4: _t->show_class_Button_clicked(); break;
         case 5: _t->handlechangeReady((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 6: _t->save_Button_clicked(); break;
+        case 7: _t->fallback_Button_clicked(); break;
         default: ;
         }
     }
@@ -132,13 +141,13 @@ int class_system::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 8;
     }
     return _id;
 }

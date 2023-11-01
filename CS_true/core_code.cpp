@@ -237,6 +237,9 @@ class DAG {
 public:
     int max_hour_per, max_score_per;//记录每学期最大学时和最大学分
 
+    vector<vector<int>> historyAssignments; // 用于保存历史课表分配
+    vector<int> currentAssignment; // 保存的课表分配
+
     vector<Course> courses_list;//记录课程信息的数组
     vector<vector<bool>> adjacencyMatrix;//课程的二维数组（邻接矩阵）来记录先修课程
 
@@ -262,6 +265,32 @@ public:
                 adjacencyMatrix[course.class_num][prereq] = true;
             }
         }
+    }
+
+    // 新增保存当前课表到历史记录中的函数
+    QString saveCurrentAssignment() {
+        QString result;
+        currentAssignment = assignment;
+        historyAssignments.push_back(currentAssignment);
+        result += "当前课表保存成功";
+        return result;
+    }
+
+    // 新增回退到上一次保存的课表状态的函数
+    QString undo() {
+        QString result;
+        if (historyAssignments.size() > 1) {
+            // 移除当前的课表分配
+            historyAssignments.pop_back();
+
+            // 恢复到上一个历史课表状态
+            assignment = historyAssignments.back();
+            result += "回退成功";
+        }
+        else {
+            result += "回退失败";
+        }
+        return result;
     }
 
     //打印邻接矩阵
@@ -469,7 +498,6 @@ void sort(int maxHoursPerSemester, int maxCreditsPerSemester) {
 }
 
 
-//// 允许用户手动调整课程的分配    会把不能调整的课程也调整到对应的学期中
 QString adjust_term(int courseIndex, int newSemester) {
     QString result;
 
@@ -493,7 +521,23 @@ QString adjust_term(int courseIndex, int newSemester) {
 
     // 使用 runSchedulingAlgorithm 函数来检查制约条件
     if (runSchedulingAlgorithm(newSemester)) {
-        result = "已调整课程分配。";
+        // 再次运行拓扑排序以解决先修后继关系
+        sort(max_hour_per, max_score_per);
+
+        // 再次检查是否有制约冲突
+        if (runSchedulingAlgorithm(newSemester)) {
+            // 如果满足条件，将当前课表分配保存
+            saveCurrentAssignment();
+            result = "已调整课程分配。";
+        }
+        else {
+            // 恢复原始的课程分配情况
+            assignment = originalAssignment;
+            currentSemesterHours = originalCurrentSemesterHours;
+            currentSemesterCredits = originalCurrentSemesterCredits;
+            assignment[courseIndex] = -1; // 不满足条件时将课程置为未分配
+            result = "无法调整课程分配，不满足约束条件。";
+        }
     }
     else {
         // 恢复原始的课程分配情况
@@ -506,6 +550,8 @@ QString adjust_term(int courseIndex, int newSemester) {
 
     return result;
 }
+
+
 
 
 
@@ -588,8 +634,12 @@ bool runSchedulingAlgorithm(int startSemester) {
         }
     }
 
+    // 再次运行拓扑排序以解决先修后继关系
+    sort(max_hour_per, max_score_per);
+
     return true; // 成功排课
 }
+
 
 
 

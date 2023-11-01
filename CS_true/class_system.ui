@@ -46,6 +46,20 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="save">
+          <property name="text">
+           <string>保存</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="fallback">
+          <property name="text">
+           <string>回退</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>

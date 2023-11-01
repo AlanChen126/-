@@ -34,6 +34,8 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *set;
     QPushButton *choose;
+    QPushButton *save;
+    QPushButton *fallback;
     QSpacerItem *horizontalSpacer;
     QLabel *label;
     QSpacerItem *horizontalSpacer_2;
@@ -71,6 +73,16 @@ public:
         choose->setObjectName(QString::fromUtf8("choose"));
 
         horizontalLayout->addWidget(choose);
+
+        save = new QPushButton(centralWidget);
+        save->setObjectName(QString::fromUtf8("save"));
+
+        horizontalLayout->addWidget(save);
+
+        fallback = new QPushButton(centralWidget);
+        fallback->setObjectName(QString::fromUtf8("fallback"));
+
+        horizontalLayout->addWidget(fallback);
 
         horizontalSpacer = new QSpacerItem(200, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -164,6 +176,8 @@ public:
         class_systemClass->setWindowTitle(QCoreApplication::translate("class_systemClass", "\346\216\222\350\257\276\347\263\273\347\273\237", nullptr));
         set->setText(QCoreApplication::translate("class_systemClass", "\345\255\246\346\227\266", nullptr));
         choose->setText(QCoreApplication::translate("class_systemClass", "\350\207\252\345\212\250\346\216\222\350\257\276", nullptr));
+        save->setText(QCoreApplication::translate("class_systemClass", "\344\277\235\345\255\230", nullptr));
+        fallback->setText(QCoreApplication::translate("class_systemClass", "\345\233\236\351\200\200", nullptr));
         label->setText(QCoreApplication::translate("class_systemClass", "\351\200\211\350\257\276\347\263\273\347\273\237", nullptr));
         show_dag->setText(QCoreApplication::translate("class_systemClass", "\346\230\276\347\244\272\350\257\276\347\250\213\345\205\210\345\220\216\345\205\263\347\263\273", nullptr));
         change_term->setText(QCoreApplication::translate("class_systemClass", "\350\260\203\346\225\264\350\257\276\347\250\213", nullptr));

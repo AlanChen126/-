@@ -1,1 +1,2 @@
 C:\Users\Lenovo\Desktop\CS_true\x64\Debug\CS_true.exe
+E:\GitHub_store\Data-structure-project\CS_true\x64\Debug\CS_true.exe

@@ -43,4 +43,6 @@ private slots:
     void handleDataReady(int xueshi, int xuefen);
     void show_class_Button_clicked();//点击显示课表按钮显示当前的排课结果
     void handlechangeReady(int class_num, int term_num);
+    void save_Button_clicked();//点击保存按钮保存当前课表信息
+    void fallback_Button_clicked();//点击回退按钮把排课记录返回到上一次修改
 };
