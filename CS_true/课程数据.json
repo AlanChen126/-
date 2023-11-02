@@ -20,7 +20,6 @@
       "name": "体育3",
       "class_num": 2,
       "pre_class": [
-        0,
         1
       ],
       "score": 1,
@@ -30,8 +29,6 @@
       "name": "体育4",
       "class_num": 3,
       "pre_class": [
-        0,
-        1,
         2
       ],
       "score": 1,

@@ -1,12 +1,3 @@
-﻿  change_term.cpp
-  core_code.cpp
-  set_window.cpp
-  show_dag.cpp
-  class_system.cpp
-  main.cpp
-  qrc_class_system.cpp
+﻿  core_code.cpp
   moc_class_system.cpp
-  moc_set_window.cpp
-  moc_change_term.cpp
-  moc_show_dag.cpp
-  CS_true.vcxproj -> E:\GitHub_store\Data-structure-project\CS_true\x64\Debug\CS_true.exe
+  CS_true.vcxproj -> C:\Users\Lenovo\Desktop\CS_true\x64\Debug\CS_true.exe
