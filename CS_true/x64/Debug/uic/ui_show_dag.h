@@ -23,7 +23,14 @@ public:
     {
         if (show_dagClass->objectName().isEmpty())
             show_dagClass->setObjectName(QString::fromUtf8("show_dagClass"));
-        show_dagClass->resize(600, 400);
+        show_dagClass->resize(800, 600);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(show_dagClass->sizePolicy().hasHeightForWidth());
+        show_dagClass->setSizePolicy(sizePolicy);
+        show_dagClass->setMinimumSize(QSize(800, 600));
+        show_dagClass->setMaximumSize(QSize(800, 600));
 
         retranslateUi(show_dagClass);
 

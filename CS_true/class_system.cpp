@@ -68,17 +68,21 @@ void class_system::show_dag_Button_clicked()
 //点击保存按钮保存当前课表信息
 void class_system::save_Button_clicked()
 {
-    QString result;
+    QString result,txt;
     result = dag.saveCurrentAssignment();
+    txt = dag.save_txt();
     ui.debug->append(result);
+    ui.debug->append(txt);
 }
 
 //点击回退按钮把排课记录返回到上一次修改
 void class_system::fallback_Button_clicked()
 {
-    QString result;
-    result = dag.undo();
-    ui.debug->append(result);
+    QString undo_result,txt;
+    undo_result = dag.undo();
+    txt = dag.removeFile("class_table.txt");
+    ui.debug->append(undo_result);
+    ui.debug->append(txt);
 }
 
 //处理从设置学分界面得到的学分和学时的数据
