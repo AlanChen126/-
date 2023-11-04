@@ -426,6 +426,28 @@ QString adjust_term(int courseIndex, int newSemester) {
         return result;
     }
 
+    // 根据课程信息来转化成二维数组提供给show_table来显示课表
+    vector<vector<string>> createClassAssignments() {
+        int numCourses = courses_list.size();
+        vector<vector<string>> classAssignments(8, vector<string>());
+
+        for (int i = 0; i < numCourses; ++i) {
+            int semester = assignment[i] - 1; // 学期从 0 到 7
+            string courseInfo = courses_list[i].name + " (" + to_string(courses_list[i].class_num) + ")";
+            classAssignments[semester].push_back(courseInfo);
+        }
+
+        //如果不满8*8(有空)就自动填补成" "
+        for (int i = 0; i < classAssignments.size(); ++i) {
+            while (classAssignments[i].size() < 8) {
+                classAssignments[i].push_back(" ");
+            }
+        }
+
+        return classAssignments;
+    }
+
+
 
 };
 

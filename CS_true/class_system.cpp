@@ -17,6 +17,8 @@ class_system::class_system(QWidget *parent)
     ui.class_table->horizontalHeader()->setStretchLastSection(true); //设置表头充满表格的宽度
     ui.class_table->setEditTriggers(QAbstractItemView::NoEditTriggers); //设置表格内容不可编辑
     ui.class_table->setAlternatingRowColors(true);
+    //ui.www->setEditTriggers(QAbstractItemView::NoEditTriggers);//只读，双击之后无法修改值
+    //ui.class_table->setItem(0, 1, new QTableWidgetItem("111"));
     //设置表头的边框
     ui.class_table->horizontalHeader()->setStyleSheet("QHeaderView::section {border: border-right: 1px solid black;}");
     ui.class_table->verticalHeader()->setStyleSheet("QHeaderView::section {border: border-right: 1px solid black;}");
@@ -172,4 +174,36 @@ void class_system::show_class_Button_clicked()
     QString result = dag.show_result(); // 获取排序结果字符串
     //ui.debug->setText(result); // 将结果显示在 QTextBrowser 中，会覆盖原先内容
     ui.debug->append(result); // 将结果显示在 QTextBrowser 中，不会覆盖原先内容
+    vector<vector<string>> classAssignments = dag.createClassAssignments();//接收课程信息的二维数组
+    show_table(classAssignments);//把二维数组内容放入class_table中显示
 }
+
+// 将排课结果保存在表格中
+void class_system::show_table(const vector<vector<string>>& classAssignments) {
+    //调试，显示8*8各个元素的值
+    /*
+    for (int i = 0; i < classAssignments.size(); ++i) {
+        for (int j = 0; j < classAssignments[i].size(); ++j) {
+            QString value = QString::fromStdString(classAssignments[i][j]);
+            ui.debug->append("classAssignments[" + QString::number(i) + "][" + QString::number(j) + "] = " + value);
+        }
+    }
+    */
+
+    // 确保二维数组的大小与表格大小匹配
+    if (classAssignments.size() != 8 || classAssignments[0].size() != 8) {
+        qDebug() << "Invalid classAssignments size!";
+        qDebug() << "classAssignments size: " << classAssignments.size() << "x" << classAssignments[0].size();
+        return;
+    }
+
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            // 创建可编辑的表格单元格
+            QString itemText = QString::fromStdString(classAssignments[i][j]);
+            QTableWidgetItem* item = new QTableWidgetItem(itemText);
+            ui.class_table->setItem(j, i, item);
+        }
+    }
+}
+

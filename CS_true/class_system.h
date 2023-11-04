@@ -45,4 +45,5 @@ private slots:
     void handlechangeReady(int class_num, int term_num);
     void save_Button_clicked();//点击保存按钮保存当前课表信息
     void fallback_Button_clicked();//点击回退按钮把排课记录返回到上一次修改
+    void show_table(const vector<vector<string>>& classAssignments);//将排课结果保存在表格中
 };
