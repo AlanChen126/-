@@ -54,7 +54,6 @@
       "name": "习思",
       "class_num": 6,
       "pre_class": [
-        4,
         5
       ],
       "score": 2,
@@ -64,8 +63,6 @@
       "name": "毛概",
       "class_num": 7,
       "pre_class": [
-        4,
-        5,
         6
       ],
       "score": 3,
@@ -75,9 +72,6 @@
       "name": "马克思原理",
       "class_num": 8,
       "pre_class": [
-        4,
-        5,
-        6,
         7
       ],
       "score": 3,

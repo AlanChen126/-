@@ -13,6 +13,9 @@
 #include <QPen>
 #include <QBrush>
 #include <QFont>
+#include <QImage>
+#include <QPixmap>
+
 
 class show_dag : public QWidget
 {
