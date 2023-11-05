@@ -56,27 +56,47 @@ void show_dag::display(QPainter& painter) {
     painter.setRenderHint(QPainter::Antialiasing);
 
     QPen pen;
-    pen.setColor(Qt::blue);
-    pen.setWidth(2);
-    painter.setPen(pen);
+    //pen.setColor(Qt::blue);
+    pen.setWidth(1.5);
+    //painter.setPen(pen);
+
+    QFont font;
+    font.setPointSize(8); // 设置字体大小为 12 像素
+    painter.setFont(font); // 应用修改后的字体
 
     for (int i = 0; i < courseNames.size(); ++i) {
+        if (i >= 0 && i <= 3) {
+            pen.setColor(Qt::blue);
+            painter.setPen(pen);
+        }
+        if (i >= 4 && i <= 8) {
+            pen.setColor(Qt::green);
+            painter.setPen(pen);
+        }
+        if (i >= 9 && i <= 10) {
+            pen.setColor(Qt::red);
+            painter.setPen(pen);
+        }
+        if (i >= 11) {
+            pen.setColor(Qt::black);
+            painter.setPen(pen);
+        }
         const QString& name = courseNames[i];
         int class_num = classNums[i];
         const QVector<int>& pre_class = prerequisites[i];
 
-        int x = class_num * 100;
-        int y = i * 60;
+        int x = (class_num+1) * 20;
+        int y = (i+1) * 20;
 
         // 绘制节点
-        painter.drawEllipse(x, y, 20, 20);
-        painter.drawText(x - 20, y + 30, name);
+        painter.drawEllipse(x, y, 8, 8);
+        painter.drawText(x - 15, y + 20, name);
 
         // 绘制连接线
         for (int preClass : pre_class) {
-            int preX = classNums[preClass] * 100;
-            int preY = preClass * 60;
-            painter.drawLine(x + 10, y, preX + 10, preY + 20);
+            int preX = classNums[preClass] * 20;
+            int preY = preClass * 20;
+            painter.drawLine(x + 5, y, preX + 22, preY + 27);
         }
     }
 }
