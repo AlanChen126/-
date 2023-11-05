@@ -65,6 +65,7 @@ void class_system::show_dag_Button_clicked()
     show_dag* show_dag_window = new show_dag(this);
     show_dag_window->setWindowFlags(Qt::Window);//要先设置成窗口属性
     show_dag_window->show();
+    //show_dag_window->display();//显示有向无环图
 }
 
 //点击保存按钮保存当前课表信息
