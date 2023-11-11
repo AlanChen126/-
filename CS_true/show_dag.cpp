@@ -6,6 +6,7 @@ show_dag::show_dag(QWidget* parent) : QWidget(parent) {
 
 show_dag::~show_dag() {}
 
+//通过读取JSON文件来获取课程信息来绘制有向无环图
 void show_dag::display(QPainter& painter) {
     // 读取JSON文件
     QFile file("课程数据.json");
@@ -27,9 +28,9 @@ void show_dag::display(QPainter& painter) {
     QJsonArray coursesArray = jsonObj["courses"].toArray();
 
     // 保存课程信息，以备后续绘制
-    QVector<QString> courseNames;
-    QVector<int> classNums;
-    QVector<QVector<int>> prerequisites;
+    QVector<QString> courseNames;//课程名
+    QVector<int> classNums;//课程编号
+    QVector<QVector<int>> prerequisites;//先修课程的二维数组
 
     for (const QJsonValue& courseValue : coursesArray) {
         if (courseValue.isObject()) {
@@ -52,7 +53,7 @@ void show_dag::display(QPainter& painter) {
         }
     }
 
-    // 现在你拥有所有课程信息，可以绘制有向无环图
+    // 绘制有向无环图
     painter.setRenderHint(QPainter::Antialiasing);
 
     QPen pen;
@@ -65,7 +66,7 @@ void show_dag::display(QPainter& painter) {
     painter.setFont(font); // 应用修改后的字体
 
     //添加图片
-    QImage image("class_dag.png"); // 用你自己的图片路径替换"path_to_image.png"
+    QImage image("class_dag.png"); 
     QPixmap pixmap = QPixmap::fromImage(image);
 
     int imageWidth = 320; // 图片宽度

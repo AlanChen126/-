@@ -22,7 +22,8 @@ class_system::class_system(QWidget *parent)
     //设置表头的边框
     ui.class_table->horizontalHeader()->setStyleSheet("QHeaderView::section {border: border-right: 1px solid black;}");
     ui.class_table->verticalHeader()->setStyleSheet("QHeaderView::section {border: border-right: 1px solid black;}");
-    //点击按钮显示界面
+
+    //点击按钮显示界面      连接信号和槽
     connect(ui.set, SIGNAL(clicked()), this, SLOT(set_data_Button_clicked()));//点击set按钮设置学时
     connect(ui.change_term, SIGNAL(clicked()), this, SLOT(change_term_Button_clicked()));//点击change按钮切换课程所在学期
     connect(ui.show_dag, SIGNAL(clicked()), this, SLOT(show_dag_Button_clicked()));//点击显示有向图按钮显示当前的有向图
@@ -55,7 +56,7 @@ void class_system::change_term_Button_clicked()
     change_term_window->setWindowFlags(Qt::Window);//要先设置成窗口属性
     change_term_window->show();
 
-    // 连接信号与槽.获得学分学时数据   设置成点击按钮就启动sort，检测是否拿到数据
+    // 连接信号与槽.获得学分学时数据   在 changeReady 信号被触发时，自动调用 handlechangeReady 槽函数(传参数使用)
     connect(change_term_window, &change_term::changeReady, this, &class_system::handlechangeReady);
 }
 
@@ -100,6 +101,7 @@ void class_system::handleDataReady(int xueshi, int xuefen) {
     cout << 666 << endl;
 }
 
+//调整课程对应的学期，获取用户在窗口输入的参数，传给dag函数
 void class_system::handlechangeReady(int class_num, int term_num)
 {
     cout << 777 << endl;
@@ -113,25 +115,30 @@ void class_system::handlechangeReady(int class_num, int term_num)
 //把json文件的数据传入courses结构体数组中
 void load_json(vector<Course>& courses)
 {
+    // 打开JSON文件
     QFile file("课程数据.json");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "无法打开JSON文件.";
         return;
     }
-    
+    // 读取JSON文件的全部内容
     QByteArray jsonData = file.readAll();
+    // 将JSON数据解析为JSON文档
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData);
 
+    // 检查JSON文档是否有效
     if (jsonDoc.isNull()) {
         qWarning() << "JSON解析失败.";
         return;
     }
-
+    // 获取JSON对象
     QJsonObject jsonObj = jsonDoc.object();
     QJsonArray coursesArray = jsonObj["courses"].toArray();
 
+    // 遍历JSON数组
     for (const QJsonValue& courseValue : coursesArray) {
         if (courseValue.isObject()) {
+            // 获取课程对象的JSON表示
             QJsonObject courseObj = courseValue.toObject();
 
             QString name = courseObj["name"].toString();
@@ -152,22 +159,6 @@ void load_json(vector<Course>& courses)
         }
     }
 
-    //输出一遍所有的结构体数组
-    for (const Course& course : courses) {
-        cout << "课程名: " << course.name << endl;
-        cout << "课程序号: " << course.class_num << endl;
-
-        cout << "先修课程序号: ";
-        for (int pre_req : course.pre_class) {
-            cout << pre_req << " ";
-        }
-        cout << endl;
-
-        cout << "学分: " << course.score << endl;
-        cout << "学时: " << course.hours << endl;
-
-        cout << "----------------------" << endl;
-    }
 }
 
 void class_system::show_class_Button_clicked()
@@ -193,17 +184,17 @@ void class_system::show_table(const vector<vector<string>>& classAssignments) {
 
     // 确保二维数组的大小与表格大小匹配
     if (classAssignments.size() != 8 || classAssignments[0].size() != 8) {
-        qDebug() << "Invalid classAssignments size!";
+        qDebug() << "表格大小不匹配";
         qDebug() << "classAssignments size: " << classAssignments.size() << "x" << classAssignments[0].size();
         return;
     }
 
-    for (int i = 0; i < 8; ++i) {
-        for (int j = 0; j < 8; ++j) {
+    for (int i = 0; i < 8; ++i) {//表格的列
+        for (int j = 0; j < 8; ++j) {//表格的行
             // 创建可编辑的表格单元格
-            QString itemText = QString::fromStdString(classAssignments[i][j]);
-            QTableWidgetItem* item = new QTableWidgetItem(itemText);
-            ui.class_table->setItem(j, i, item);
+            QString itemText = QString::fromStdString(classAssignments[i][j]);//获取对应值
+            QTableWidgetItem* item = new QTableWidgetItem(itemText);//新建一个表格元素
+            ui.class_table->setItem(j, i, item);//设置表格单元格
         }
     }
 }

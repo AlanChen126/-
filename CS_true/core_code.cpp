@@ -159,7 +159,7 @@ void sort(int maxHoursPerSemester, int maxCreditsPerSemester) {
 }
 
 
-
+//二次调整课程函数（有问题）
 QString adjust_term(int courseIndex, int newSemester) {
     QString result;
     int coursesAssigned;
@@ -184,7 +184,7 @@ QString adjust_term(int courseIndex, int newSemester) {
     return result;
 }
 
-
+//在下面文字框中显示排课结果
     QString show_result()
     {
         QString result_final; // 用于存储排序结果的字符串
@@ -204,7 +204,7 @@ QString adjust_term(int courseIndex, int newSemester) {
         return result_final;
     }
 
-
+    //二次调整课程函数（有问题）
     bool resort(int courseIndex, int newSemester) {
         int numCourses = courses_list.size();  // 获取课程的总数量
         vector<int> inDegree(numCourses, 0);  // 存储每个课程顶点的入度
@@ -340,8 +340,8 @@ QString adjust_term(int courseIndex, int newSemester) {
 
         if (!file.exists()) {
             // 如果文件不存在，创建一个新文件
-            if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-                QTextStream stream(&file);  // 创建一个QTextStream对象并与文件关联
+            if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {//尝试以“只写”和“文本”模式打开文件
+                QTextStream stream(&file);  // 创建一个QTextStream对象并与文件关联,来实现读取和写入文件
                 stream << content;  // 将传入的文本内容(content)写入到文件中
                 file.close();  // 关闭文件
                 return true;  // 返回true表示保存成功
@@ -351,7 +351,7 @@ QString adjust_term(int courseIndex, int newSemester) {
             }
         }
 
-        if (file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {//append:写入的内容将被追加到文件末尾而不是覆盖原有内容。如果文件不存在，将创建一个新文件。
             // 如果文件存在，以追加模式打开文件
             QTextStream stream(&file);  // 创建一个QTextStream对象并与文件关联
             stream << content;  // 将传入的文本内容(content)写入到文件中
@@ -392,8 +392,8 @@ QString adjust_term(int courseIndex, int newSemester) {
 
             // 读取文件内容并存储在 QStringList 中
             QStringList lines;
-            while (!in.atEnd()) {
-                lines << in.readLine();
+            while (!in.atEnd()) {//检查是否已经到达文件的末尾
+                lines << in.readLine();//读取文件的每一行
             }
 
             // 如果文件行数少于9，不执行删除操作
@@ -406,16 +406,16 @@ QString adjust_term(int courseIndex, int newSemester) {
             lines.erase(lines.end() - 9, lines.end());
 
             // 创建一个 QString 变量并将 lines 中的内容合并到其中
-            QString fileContent = lines.join("\n");
+            QString fileContent = lines.join("\n");//把每一行合在一起，用\n分割
 
             // 清空文件内容
             file.resize(0);
 
             // 创建 QTextStream 以便于写入修改后的内容
-            QTextStream out(&file);
+            QTextStream out(&file); //使用 out 对象来进行文件的文本写入操作
 
             // 将合并后的内容写回文件
-            out << fileContent;
+            out << fileContent;//将删除后9行的数据存入文件中
 
             // 关闭文件
             file.close();
@@ -434,12 +434,12 @@ QString adjust_term(int courseIndex, int newSemester) {
         for (int i = 0; i < numCourses; ++i) {
             int semester = assignment[i] - 1; // 学期从 0 到 7
             string courseInfo = courses_list[i].name + " (" + to_string(courses_list[i].class_num) + ")";
-            classAssignments[semester].push_back(courseInfo);
+            classAssignments[semester].push_back(courseInfo);//把对应学期的课程加入vector
         }
 
         //如果不满8*8(有空)就自动填补成" "
         for (int i = 0; i < classAssignments.size(); ++i) {
-            while (classAssignments[i].size() < 8) {
+            while (classAssignments[i].size() < 8) {//如果该学期课程数<8，添加空课程来充满表格
                 classAssignments[i].push_back(" ");
             }
         }

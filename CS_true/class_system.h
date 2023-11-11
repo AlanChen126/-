@@ -36,7 +36,7 @@ private:
 
     DAG dag;
 
-private slots:
+private slots://槽函数
     void set_data_Button_clicked();//点击设置学分按钮出现设置学分的界面
     void change_term_Button_clicked();//点击切换课程所在学期
     void show_dag_Button_clicked();//点击显示有向无环图

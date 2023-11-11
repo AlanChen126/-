@@ -25,7 +25,7 @@ void change_term::get_term_Button_clicked()
 	int term_num = term_Text.toInt(&ok_term);
 	//添加警告窗口
 	if (ok_class && ok_term) {
-		emit changeReady(class_num, term_num);
+		emit changeReady(class_num, term_num);//发送changeReady信号，传递了具体的 class_num 和 term_num 值。
 
 		QMessageBox::critical(this, tr("危险弹窗"), tr("正确"),
 			QMessageBox::Save | QMessageBox::Discard, QMessageBox::Discard);
