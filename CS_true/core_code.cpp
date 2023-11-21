@@ -28,9 +28,9 @@ struct Course {
 // 定义有向图类
 class DAG {
 public:
-    int max_hour_per, max_score_per;//记录每学期最大学时和最大学分
-    //int coursesAssigned = 0; // 已分配课程数量
+    vector<int> max_hour_per, max_score_per;//记录每学期最大学时和最大学分
 
+    //保存课程表时用
     vector<vector<int>> historyAssignments; // 用于保存历史课表分配
     vector<int> currentAssignment; // 保存的课表分配
 
@@ -74,7 +74,7 @@ public:
 
 
  //最新版sort（无bug，可运行所有课程,不显示排课结果）
-void sort(int maxHoursPerSemester, int maxCreditsPerSemester) {
+void sort(vector<int> maxHoursPerSemester, vector<int> maxCreditsPerSemester) {
     //QString result; // 用于存储排序结果的字符串
     max_hour_per = maxHoursPerSemester;
     max_score_per = maxCreditsPerSemester;
@@ -86,8 +86,8 @@ void sort(int maxHoursPerSemester, int maxCreditsPerSemester) {
     assignment.resize(numCourses, -1);
 
     int currentSemester = 1; // 当前学期
-    currentSemesterHours.resize(9, 0); // 当前学期的学时总数，包括 8 个学期
-    currentSemesterCredits.resize(9, 0); // 当前学期的学分总数，包括 8 个学期
+    currentSemesterHours.resize(8, 0); // 当前学期的学时总数，包括 8 个学期
+    currentSemesterCredits.resize(8, 0); // 当前学期的学分总数，包括 8 个学期
     int coursesAssigned = 0; // 已分配课程数量
 
     //记录每一个课程的入度
@@ -115,13 +115,13 @@ void sort(int maxHoursPerSemester, int maxCreditsPerSemester) {
 
                 // 如果可以分配且满足学时和学分的约束条件
                 if (canAssign &&
-                    currentSemesterHours[currentSemester] + courses_list[i].hours <= maxHoursPerSemester &&
-                    currentSemesterCredits[currentSemester] + courses_list[i].score <= maxCreditsPerSemester) {
+                    currentSemesterHours[currentSemester-1] + courses_list[i].hours <= maxHoursPerSemester[currentSemester-1] &&
+                    currentSemesterCredits[currentSemester-1] + courses_list[i].score <= maxCreditsPerSemester[currentSemester-1]) {
 
                     assignment[i] = currentSemester; // 分配课程到当前学期
                     //修改本学期信息
-                    currentSemesterHours[currentSemester] += courses_list[i].hours;
-                    currentSemesterCredits[currentSemester] += courses_list[i].score;
+                    currentSemesterHours[currentSemester-1] += courses_list[i].hours;
+                    currentSemesterCredits[currentSemester-1] += courses_list[i].score;
                     coursesAssigned++;
 
                     // 更新相关顶点的入度        第i个课程在本学期被选中
@@ -268,8 +268,8 @@ QString adjust_term(int courseIndex, int newSemester) {
 
                     // 如果可以分配且满足学时和学分的约束条件
                     if (canAssign &&
-                        currentSemesterHours[currentSemester] + courses_list[i].hours <= max_hour_per &&
-                        currentSemesterCredits[currentSemester] + courses_list[i].score <= max_score_per) {
+                        currentSemesterHours[currentSemester] + courses_list[i].hours <= max_hour_per[currentSemester] &&
+                        currentSemesterCredits[currentSemester] + courses_list[i].score <= max_score_per[currentSemester]) {
 
                         newAssignment[i] = currentSemester; // 分配课程到当前学期
                         // 修改本学期信息

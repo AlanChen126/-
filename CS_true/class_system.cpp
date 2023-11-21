@@ -48,6 +48,18 @@ void class_system::set_data_Button_clicked()
     //后续函数在set_window中实现
 }
 
+//处理从设置学分界面得到的学分和学时的数据
+void class_system::handleDataReady(vector<int> xueshi, vector<int> xuefen) {
+    // 在这里调用 sort 函数，并传递 xueshi 和 xuefen 值
+    cout << 111 << endl;
+    dag.printAdjacencyMatrix();//可以输出！！
+    cout << 222 << endl;
+    dag.sort(xueshi, xuefen);
+    //QString result = dag.sort(xueshi, xuefen); // 获取排序结果字符串
+    //ui.debug->setText(result); // 将结果显示在 QTextBrowser 中
+    cout << 666 << endl;
+}
+
 //修改课程所在学期
 void class_system::change_term_Button_clicked()
 {
@@ -89,17 +101,6 @@ void class_system::fallback_Button_clicked()
     ui.debug->append(txt);
 }
 
-//处理从设置学分界面得到的学分和学时的数据
-void class_system::handleDataReady(int xueshi, int xuefen) {
-    // 在这里调用 sort 函数，并传递 xueshi 和 xuefen 值
-    cout << 111 << endl;
-    dag.printAdjacencyMatrix();//可以输出！！
-    cout << 222 << endl;
-    dag.sort(xueshi, xuefen);
-    //QString result = dag.sort(xueshi, xuefen); // 获取排序结果字符串
-    //ui.debug->setText(result); // 将结果显示在 QTextBrowser 中
-    cout << 666 << endl;
-}
 
 //调整课程对应的学期，获取用户在窗口输入的参数，传给dag函数
 void class_system::handlechangeReady(int class_num, int term_num)

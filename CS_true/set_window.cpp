@@ -14,27 +14,52 @@ set_window::~set_window()
 
 void set_window::get_data_Button_clicked()
 {
-	//获取Qstring
-	QString xueshiText = ui.max_xueshi->toPlainText();
-	QString xuefenText = ui.max_xuefen->toPlainText();
-	//把Qstring转化为int
-	bool ok_xueshi,ok_xuefen;
-	int xueshiValue = xueshiText.toInt(&ok_xueshi);
-	int xuefenValue = xuefenText.toInt(&ok_xuefen);
-	//添加警告窗口
-	if (ok_xuefen && ok_xueshi) {
-		//在这里添加把输入的学时和学分数获取到对应函数中
-		emit dataReady(xueshiValue, xuefenValue);
-		 
-		QMessageBox::critical(this, tr("危险弹窗"), tr("正确"),
-			QMessageBox::Save | QMessageBox::Discard, QMessageBox::Discard);
+    std::vector<int> xueshiValues(8);  // 初始化大小为8的vector
+    std::vector<int> xuefenValues(8);  // 初始化大小为8的vector
+    std::vector<QString> xueshiTextArray(8);  // 初始化大小为8的vector
+    std::vector<QString> xuefenTextArray(8);  // 初始化大小为8的vector
 
-	}
-	else {
-		QMessageBox::critical(this, tr("危险弹窗"), tr("错误"),
-			QMessageBox::Save | QMessageBox::Discard, QMessageBox::Discard);
+    // 使用循环遍历文本字段
+    for (int i = 1; i <= 8; ++i) {
+        QString xueshiText = this->findChild<QTextEdit*>(QString("max_xueshi%1").arg(i))->toPlainText();
+        QString xuefenText = this->findChild<QTextEdit*>(QString("max_xuefen%1").arg(i))->toPlainText();
 
-	}
+        // 将文本值添加到数组中
+        xueshiTextArray[i - 1] = xueshiText;
+        xuefenTextArray[i - 1] = xuefenText;
+    }
 
-	
+    //
+    // // 输出 xueshiTextArray 和 xuefenTextArray 的值
+    qDebug() << "xueshiTextArray:" << xueshiTextArray;
+    qDebug() << "xuefenTextArray:" << xuefenTextArray;
+    //
+
+    // 将文本值转换为整数并存储到 xueshiValues 和 xuefenValues 中
+    for (int i = 0; i < xueshiTextArray.size(); ++i) {
+        bool ok_xueshi, ok_xuefen;
+        int xueshiValue = xueshiTextArray[i].toInt(&ok_xueshi);
+        int xuefenValue = xuefenTextArray[i].toInt(&ok_xuefen);
+
+        if (ok_xueshi && ok_xuefen) {
+            xueshiValues[i] = xueshiValue;
+            xuefenValues[i] = xuefenValue;
+        }
+        else {
+            QMessageBox::critical(this, tr("危险弹窗"), tr("错误在第 %1 行").arg(i + 1),
+                QMessageBox::Save | QMessageBox::Discard, QMessageBox::Discard);
+            return; // 如果有错误，停止处理
+        }
+    }
+
+    //
+    qDebug() << "xueshiValues:" << xueshiValues;
+    qDebug() << "xuefenValues:" << xuefenValues;
+    //
+
+    // 发射信号，传递获取到的数值
+    emit dataReady(xueshiValues, xuefenValues);
+
+    QMessageBox::critical(this, tr("危险弹窗"), tr("正确"),
+        QMessageBox::Save | QMessageBox::Discard, QMessageBox::Discard);
 }

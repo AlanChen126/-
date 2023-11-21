@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_set_window_t {
-    QByteArrayData data[6];
-    char stringdata0[60];
+    QByteArrayData data[7];
+    char stringdata0[77];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,13 +35,14 @@ static const qt_meta_stringdata_set_window_t qt_meta_stringdata_set_window = {
 QT_MOC_LITERAL(0, 0, 10), // "set_window"
 QT_MOC_LITERAL(1, 11, 9), // "dataReady"
 QT_MOC_LITERAL(2, 21, 0), // ""
-QT_MOC_LITERAL(3, 22, 6), // "xueshi"
-QT_MOC_LITERAL(4, 29, 6), // "xuefen"
-QT_MOC_LITERAL(5, 36, 23) // "get_data_Button_clicked"
+QT_MOC_LITERAL(3, 22, 16), // "std::vector<int>"
+QT_MOC_LITERAL(4, 39, 6), // "xueshi"
+QT_MOC_LITERAL(5, 46, 6), // "xuefen"
+QT_MOC_LITERAL(6, 53, 23) // "get_data_Button_clicked"
 
     },
-    "set_window\0dataReady\0\0xueshi\0xuefen\0"
-    "get_data_Button_clicked"
+    "set_window\0dataReady\0\0std::vector<int>\0"
+    "xueshi\0xuefen\0get_data_Button_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -62,10 +63,10 @@ static const uint qt_meta_data_set_window[] = {
        1,    2,   24,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       5,    0,   29,    2, 0x08 /* Private */,
+       6,    0,   29,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 3,    4,    5,
 
  // slots: parameters
     QMetaType::Void,
@@ -79,14 +80,14 @@ void set_window::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<set_window *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->dataReady((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 0: _t->dataReady((*reinterpret_cast< std::vector<int>(*)>(_a[1])),(*reinterpret_cast< std::vector<int>(*)>(_a[2]))); break;
         case 1: _t->get_data_Button_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (set_window::*)(int , int );
+            using _t = void (set_window::*)(std::vector<int> , std::vector<int> );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&set_window::dataReady)) {
                 *result = 0;
                 return;
@@ -136,7 +137,7 @@ int set_window::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void set_window::dataReady(int _t1, int _t2)
+void set_window::dataReady(std::vector<int> _t1, std::vector<int> _t2)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

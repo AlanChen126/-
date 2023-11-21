@@ -131,8 +131,7 @@
       "name": "电路分析基础-1",
       "class_num": 15,
       "pre_class": [
-        12,
-        14
+        12
       ],
       "score": 2,
       "hours": 32

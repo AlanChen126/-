@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_class_system_t {
-    QByteArrayData data[17];
-    char stringdata0[278];
+    QByteArrayData data[18];
+    char stringdata0[290];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,27 +38,28 @@ QT_MOC_LITERAL(2, 37, 0), // ""
 QT_MOC_LITERAL(3, 38, 26), // "change_term_Button_clicked"
 QT_MOC_LITERAL(4, 65, 23), // "show_dag_Button_clicked"
 QT_MOC_LITERAL(5, 89, 15), // "handleDataReady"
-QT_MOC_LITERAL(6, 105, 6), // "xueshi"
-QT_MOC_LITERAL(7, 112, 6), // "xuefen"
-QT_MOC_LITERAL(8, 119, 25), // "show_class_Button_clicked"
-QT_MOC_LITERAL(9, 145, 17), // "handlechangeReady"
-QT_MOC_LITERAL(10, 163, 9), // "class_num"
-QT_MOC_LITERAL(11, 173, 8), // "term_num"
-QT_MOC_LITERAL(12, 182, 19), // "save_Button_clicked"
-QT_MOC_LITERAL(13, 202, 23), // "fallback_Button_clicked"
-QT_MOC_LITERAL(14, 226, 10), // "show_table"
-QT_MOC_LITERAL(15, 237, 23), // "vector<vector<string> >"
-QT_MOC_LITERAL(16, 261, 16) // "classAssignments"
+QT_MOC_LITERAL(6, 105, 11), // "vector<int>"
+QT_MOC_LITERAL(7, 117, 6), // "xueshi"
+QT_MOC_LITERAL(8, 124, 6), // "xuefen"
+QT_MOC_LITERAL(9, 131, 25), // "show_class_Button_clicked"
+QT_MOC_LITERAL(10, 157, 17), // "handlechangeReady"
+QT_MOC_LITERAL(11, 175, 9), // "class_num"
+QT_MOC_LITERAL(12, 185, 8), // "term_num"
+QT_MOC_LITERAL(13, 194, 19), // "save_Button_clicked"
+QT_MOC_LITERAL(14, 214, 23), // "fallback_Button_clicked"
+QT_MOC_LITERAL(15, 238, 10), // "show_table"
+QT_MOC_LITERAL(16, 249, 23), // "vector<vector<string> >"
+QT_MOC_LITERAL(17, 273, 16) // "classAssignments"
 
     },
     "class_system\0set_data_Button_clicked\0"
     "\0change_term_Button_clicked\0"
     "show_dag_Button_clicked\0handleDataReady\0"
-    "xueshi\0xuefen\0show_class_Button_clicked\0"
-    "handlechangeReady\0class_num\0term_num\0"
-    "save_Button_clicked\0fallback_Button_clicked\0"
-    "show_table\0vector<vector<string> >\0"
-    "classAssignments"
+    "vector<int>\0xueshi\0xuefen\0"
+    "show_class_Button_clicked\0handlechangeReady\0"
+    "class_num\0term_num\0save_Button_clicked\0"
+    "fallback_Button_clicked\0show_table\0"
+    "vector<vector<string> >\0classAssignments"
 };
 #undef QT_MOC_LITERAL
 
@@ -80,22 +81,22 @@ static const uint qt_meta_data_class_system[] = {
        3,    0,   60,    2, 0x08 /* Private */,
        4,    0,   61,    2, 0x08 /* Private */,
        5,    2,   62,    2, 0x08 /* Private */,
-       8,    0,   67,    2, 0x08 /* Private */,
-       9,    2,   68,    2, 0x08 /* Private */,
-      12,    0,   73,    2, 0x08 /* Private */,
-      13,    0,   74,    2, 0x08 /* Private */,
-      14,    1,   75,    2, 0x08 /* Private */,
+       9,    0,   67,    2, 0x08 /* Private */,
+      10,    2,   68,    2, 0x08 /* Private */,
+      13,    0,   73,    2, 0x08 /* Private */,
+      14,    0,   74,    2, 0x08 /* Private */,
+      15,    1,   75,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    6,    7,
+    QMetaType::Void, 0x80000000 | 6, 0x80000000 | 6,    7,    8,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   10,   11,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   11,   12,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 15,   16,
+    QMetaType::Void, 0x80000000 | 16,   17,
 
        0        // eod
 };
@@ -109,7 +110,7 @@ void class_system::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 0: _t->set_data_Button_clicked(); break;
         case 1: _t->change_term_Button_clicked(); break;
         case 2: _t->show_dag_Button_clicked(); break;
-        case 3: _t->handleDataReady((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 3: _t->handleDataReady((*reinterpret_cast< vector<int>(*)>(_a[1])),(*reinterpret_cast< vector<int>(*)>(_a[2]))); break;
         case 4: _t->show_class_Button_clicked(); break;
         case 5: _t->handlechangeReady((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 6: _t->save_Button_clicked(); break;
