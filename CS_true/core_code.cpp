@@ -204,6 +204,19 @@ QString adjust_term(int courseIndex, int newSemester) {
         return result_final;
     }
 
+    // 递归调整相关课程的学期
+    void resortAdjustSuccessors(int courseIndex, int newSemester, vector<int>& newAssignment, int& coursesAssigned) {
+        for (int i = 0; i < courses_list.size(); ++i) {
+            for (int prereq : courses_list[i].pre_class) {
+                if (prereq == courseIndex && newAssignment[i] == -1) {
+                    newAssignment[i] = newSemester + 1;
+                    coursesAssigned++;
+                    resortAdjustSuccessors(i, newSemester + 1, newAssignment, coursesAssigned);
+                }
+            }
+        }
+    }
+
     //二次调整课程函数（有问题）
     bool resort(int courseIndex, int newSemester) {
         int numCourses = courses_list.size();  // 获取课程的总数量
@@ -228,23 +241,9 @@ QString adjust_term(int courseIndex, int newSemester) {
         // 先将选中课程安排到新学期
         newAssignment[courseIndex] = newSemester;
         coursesAssigned++;
-        //把该课程相关的后续课程依次往后推对应的一个学期，向后平移
-        int pre_class_num = courseIndex;
-        for (int j = newSemester + 1; j <= 8; j++) {
-            //应该用while写第二层循环
-            for (int i = 0; i < numCourses; i++) {
-                for (int prereq : courses_list[i].pre_class) {
-                    //如果该课程的先修课是被调整的课程，就把该课程向后平移一个学期
-                    if (prereq == pre_class_num) {
-                        newAssignment[i] = j;
-                        pre_class_num = i;
-                        coursesAssigned++;
-                        break;
-                    }
 
-                }
-            }
-        }
+        // 调整相关课程的学期
+        resortAdjustSuccessors(courseIndex, newSemester, newAssignment, coursesAssigned);
 
         bool canAssign = false;
 
