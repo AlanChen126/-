@@ -1,0 +1,23 @@
+﻿  Reading Qt configuration (E:/qt/Qt5.14.2/5.14.2/msvc2017_64/bin/qmake)
+  uic change_term.ui
+  uic class_system.ui
+  uic set_window.ui
+  uic show_dag.ui
+  rcc class_system.qrc
+  moc class_system.h
+  moc set_window.h
+  moc change_term.h
+  moc show_dag.h
+   RCC: Warning: No resources in 'C:\Users\Lenovo\Desktop\CS_true\class_system.qrc'.
+  change_term.cpp
+  core_code.cpp
+  set_window.cpp
+  show_dag.cpp
+  class_system.cpp
+  main.cpp
+  qrc_class_system.cpp
+  moc_class_system.cpp
+  moc_set_window.cpp
+  moc_change_term.cpp
+  moc_show_dag.cpp
+  CS_true.vcxproj -> C:\Users\Lenovo\Desktop\CS_true\x64\Release\CS_true.exe

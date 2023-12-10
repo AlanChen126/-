@@ -1,3 +1,4 @@
-﻿  core_code.cpp
-  moc_class_system.cpp
+﻿  rcc class_system.qrc
+   RCC: Warning: No resources in 'C:\Users\Lenovo\Desktop\CS_true\class_system.qrc'.
+  qrc_class_system.cpp
   CS_true.vcxproj -> C:\Users\Lenovo\Desktop\CS_true\x64\Debug\CS_true.exe
