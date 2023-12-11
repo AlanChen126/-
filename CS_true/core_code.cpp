@@ -73,7 +73,6 @@ public:
     }
 
 
- //最新版sort（无bug，可运行所有课程,不显示排课结果）
 void sort(vector<int> maxHoursPerSemester, vector<int> maxCreditsPerSemester) {
     //QString result; // 用于存储排序结果的字符串
     max_hour_per = maxHoursPerSemester;
@@ -159,7 +158,7 @@ void sort(vector<int> maxHoursPerSemester, vector<int> maxCreditsPerSemester) {
 }
 
 
-//二次调整课程函数（有问题）
+//二次调整课程函数
 QString adjust_term(int courseIndex, int newSemester) {
     QString result;
     int coursesAssigned;
@@ -208,6 +207,7 @@ QString adjust_term(int courseIndex, int newSemester) {
     void resortAdjustSuccessors(int courseIndex, int newSemester, vector<int>& newAssignment, int& coursesAssigned) {
         for (int i = 0; i < courses_list.size(); ++i) {
             for (int prereq : courses_list[i].pre_class) {
+                //选中课程为该课程的先修课程，且该课程未被分配
                 if (prereq == courseIndex && newAssignment[i] == -1) {
                     newAssignment[i] = newSemester + 1;
                     coursesAssigned++;
@@ -217,7 +217,7 @@ QString adjust_term(int courseIndex, int newSemester) {
         }
     }
 
-    //二次调整课程函数（有问题）
+    //二次调整课程函数
     bool resort(int courseIndex, int newSemester) {
         int numCourses = courses_list.size();  // 获取课程的总数量
         vector<int> inDegree(numCourses, 0);  // 存储每个课程顶点的入度
@@ -299,7 +299,7 @@ QString adjust_term(int courseIndex, int newSemester) {
         // 检查新的分配状态是否满足要求
         for (int i = 0; i < numCourses; ++i) {
             if (newAssignment[i] == -1) {
-                // 有课程无法分配
+                // 有课程无法分配，则不能按照该调整课程的安排分配
                 return false;
             }
         }
@@ -309,7 +309,6 @@ QString adjust_term(int courseIndex, int newSemester) {
         return true;
     }
 
-    //新版本
     // 新增保存当前课表到历史记录中的函数
     QString saveCurrentAssignment() {
         QString result;
@@ -361,7 +360,7 @@ QString adjust_term(int courseIndex, int newSemester) {
         return false;  // 返回false表示保存失败
     }
 
-    // 新增回退到上一次保存的课表状态的函数
+    // 回退到上一次保存的课表状态的函数
     QString undo() {
         QString result;
         if (historyAssignments.size() > 1) {
@@ -369,12 +368,12 @@ QString adjust_term(int courseIndex, int newSemester) {
             historyAssignments.pop_back();
 
             // 恢复到上一个历史课表状态
-            assignment = historyAssignments.back();
+            assignment = historyAssignments.back();//使用尾元素
             result += "回退成功";
 
         }
         else {
-            result += "回退成功，目前没有保存的课表可供再次回撤";
+            result += "回退失败，目前没有保存的课表可供再次回撤";
         }
         return result;
     }

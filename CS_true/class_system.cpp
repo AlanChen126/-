@@ -51,13 +51,10 @@ void class_system::set_data_Button_clicked()
 //处理从设置学分界面得到的学分和学时的数据
 void class_system::handleDataReady(vector<int> xueshi, vector<int> xuefen) {
     // 在这里调用 sort 函数，并传递 xueshi 和 xuefen 值
-    cout << 111 << endl;
-    dag.printAdjacencyMatrix();//可以输出！！
-    cout << 222 << endl;
+
+    dag.printAdjacencyMatrix();
+
     dag.sort(xueshi, xuefen);
-    //QString result = dag.sort(xueshi, xuefen); // 获取排序结果字符串
-    //ui.debug->setText(result); // 将结果显示在 QTextBrowser 中
-    cout << 666 << endl;
 }
 
 //修改课程所在学期
@@ -78,7 +75,7 @@ void class_system::show_dag_Button_clicked()
     show_dag* show_dag_window = new show_dag(this);
     show_dag_window->setWindowFlags(Qt::Window);//要先设置成窗口属性
     show_dag_window->show();
-    //show_dag_window->display();//显示有向无环图
+
 }
 
 //点击保存按钮保存当前课表信息
@@ -105,11 +102,8 @@ void class_system::fallback_Button_clicked()
 //调整课程对应的学期，获取用户在窗口输入的参数，传给dag函数
 void class_system::handlechangeReady(int class_num, int term_num)
 {
-    cout << 777 << endl;
     QString result = dag.adjust_term(class_num, term_num); // 获取排序结果字符串
     ui.debug->append(result); // 将结果显示在 QTextBrowser 中，不会覆盖原先内容
-    //dag.adjust(class_num,term_num);
-    cout << 999 << endl;
 }
 
 
@@ -173,16 +167,6 @@ void class_system::show_class_Button_clicked()
 
 // 将排课结果保存在表格中
 void class_system::show_table(const vector<vector<string>>& classAssignments) {
-    //调试，显示8*8各个元素的值
-    /*
-    for (int i = 0; i < classAssignments.size(); ++i) {
-        for (int j = 0; j < classAssignments[i].size(); ++j) {
-            QString value = QString::fromStdString(classAssignments[i][j]);
-            ui.debug->append("classAssignments[" + QString::number(i) + "][" + QString::number(j) + "] = " + value);
-        }
-    }
-    */
-
     // 确保二维数组的大小与表格大小匹配
     if (classAssignments.size() != 8 || classAssignments[0].size() != 8) {
         qDebug() << "表格大小不匹配";
